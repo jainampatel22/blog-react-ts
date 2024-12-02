@@ -7,7 +7,7 @@ import { BrandSlogan } from '../components/BrandSlogan';
 import { BlogSkeleton } from '@/components/BlogSkeleton';
 import dayjs from 'dayjs';
 
-
+import { Skeleton } from "@/components/ui/skeleton"
 interface Blog {
   id: string;
   title: string;
@@ -38,7 +38,7 @@ export function Blogs() {
     } catch (err) {
       console.error('Error fetching blogs:', err);
       setError('Failed to load blogs.');
-      setLoading(false);
+  
     }
   };
 
@@ -46,7 +46,24 @@ export function Blogs() {
     fetchblogs();
   }, []);
 
-  if (loading) return <BlogSkeleton  />;
+  if (loading) return 
+  <div className="container mx-auto px-4 py-8">
+  <Skeleton className="h-8 w-32 mb-4" />
+  <div className="max-w-4xl mx-auto">
+    <Skeleton className="aspect-video mb-8 rounded-lg" />
+    <Skeleton className="h-12 w-3/4 mb-4" />
+    <div className="flex items-center space-x-4 mb-6">
+      <Skeleton className="h-8 w-8 rounded-full" />
+      <Skeleton className="h-4 w-24" />
+      <Skeleton className="h-4 w-24" />
+      <Skeleton className="h-4 w-24" />
+    </div>
+    <Skeleton className="h-4 w-full mb-4" />
+    <Skeleton className="h-4 w-full mb-4" />
+    <Skeleton className="h-4 w-3/4 mb-4" />
+  </div>
+</div>
+;
   if (error) return <div className="text-red-500 text-center py-8">{error}</div>;
 
   return (
@@ -62,7 +79,7 @@ export function Blogs() {
             <Card key={blog.id}    className="flex flex-col">
               <CardContent className="flex-grow">
                 <a
-                  onClick={() => navigate(`/blog/:${blog.id}`)}
+                  onClick={() => navigate(`/blog/${blog.id}`)}
                   className="block mt-2 cursor-pointer"
                 >
                   <h2 className="text-2xl font-bold text-gray-900 hover:text-gray-600 transition-colors duration-200">

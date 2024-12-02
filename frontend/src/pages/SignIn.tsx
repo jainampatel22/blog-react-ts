@@ -48,7 +48,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     console.log('JWT Token:', jwtToken);
 
     // Navigate to the home or dashboard page
-    navigate('/');
+    navigate('/blogs');
   } catch (error: any) {
     // Handle errors
     if (error.response) {

@@ -1,5 +1,6 @@
 'use client'
 
+import { ArrowLeft, Calendar, Clock, User } from 'lucide-react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -22,7 +23,7 @@ export default function PublishBlog() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/v1/blogs",
+        "http://localhost:3000/api/v1/blog",
         { title, content },
         {
           headers: {
@@ -41,7 +42,11 @@ export default function PublishBlog() {
 
   return (
     <div>
-      <BrandSlogan />
+       <Button variant="ghost" className="mb-4 mt-2 ml-2 group" onClick={() => window.history.back()}>
+      <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
+      Back to all posts
+    </Button>
+     
       <div className="container mx-auto py-12 px-4 max-w-2xl">
         <Card>
           <CardHeader>
